@@ -1,0 +1,23 @@
+import math
+class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        l, r = 1, max(piles)
+        res = r
+
+        while l <= r:
+            k = l + (r - l)//2
+            hours = 0
+            for p in piles:
+                hours += math.ceil(p/k)
+
+            if hours <= h:
+                #move right pointer
+                res = min(res, k)
+                r = k - 1
+            else:
+                #move left pointer
+                l = k + 1
+        return res
+
+
+        
